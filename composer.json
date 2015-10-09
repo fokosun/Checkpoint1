@@ -1,0 +1,34 @@
+{
+    "name": "florence/dictionary",
+    "description": "An urban dictionary agnostic of common slangs and their meanings",
+    "type": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "andela-fokosun",
+            "email": "okosunuzflorence@gmail.com",
+            "role": "Developer"
+        }
+    ],
+
+    "require":
+    {
+        "php" : ">=5.5.9",
+        "phpunit/phpunit": "^5.0"
+    },
+
+    "require-dev":
+    {
+    }
+,
+
+     "autoload":
+     {
+        "psr-4":
+        {
+        "Florence\\" : "src/"
+        },
+
+        "classmap": ["src/"]
+    }
+}
