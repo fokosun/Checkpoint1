@@ -3,6 +3,8 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 [![Build Status](https://travis-ci.org/andela-fokosun/Checkpoint1.svg)](https://travis-ci.org/andela-fokosun/Checkpoint1)
 
+[![Latest Stable Version](http://img.shields.io/packagist/v/florence/dictionary.svg?style=flat)](https://packagist.org/packages/florence/dictionary)
+
 ## Classes
 - DataStore: The main dictionary
 - Dictionary: CRUD operations.
