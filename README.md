@@ -5,7 +5,7 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 ## Classes
 - Data: The main dictionary, a static associative array that contains urban words
-- Dictionary: CRUD implememntaions and Ranking.
+- Dictionary: CRUD implementations and Ranking System Implementation.
 
 ## Testing
  Phpunit 5.0* was used for testing the classes.
