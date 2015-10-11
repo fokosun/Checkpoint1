@@ -8,7 +8,7 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 - Dictionary: CRUD implementations and Ranking System Implementation.
 
 ## Testing
- Phpunit 5.0* was used for testing the classes.
+ Phpunit 5.0 was used for testing the classes.
 
 ## Installation
 
