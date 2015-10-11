@@ -99,7 +99,7 @@ class Dictionary
      * Remove a slang and it's attributes from the dictionary array
      */
 
-    public function removSlang($slang)
+    public function removeSlang($slang)
     {
 
         if(array_key_exists($slang, $this->data)){
