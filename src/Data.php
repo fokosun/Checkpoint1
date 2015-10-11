@@ -20,5 +20,15 @@ class Data
             "description"     => "To steal an item",
             "sample-sentence" => "Seyi still can't believe Amitab could lift her phone."
         ],
+        [
+            "slang"           => "Oshey",
+            "description"     => "Colloquial way of showing appreciation",
+            "sample-sentence" => "Oshey! Oshey! Oshey!, my tests are passing."
+        ],
+        [
+            "slang"           => "Suddenly suddenly",
+            "description"     => "Dbanj's favourite slang",
+            "sample-sentence" => "A funny way to express surprise or narrate a unny experience."
+        ],
     ];
 }

@@ -21,6 +21,19 @@ class Dictionary
 
     }
 
+
+
+     /**
+     * Set Data
+     */
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+
+
     /**
      * Return the data
      */
@@ -30,15 +43,6 @@ class Dictionary
         return $this->data;
     }
 
-
-    /**
-     * Set Data
-     */
-
-    public function setData($data)
-    {
-        $this->data = $data;
-    }
 
     /**
      * Adds a slang, it's description and sample sentence to the dictionary array in the
