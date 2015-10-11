@@ -10,6 +10,18 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 ## Testing
  Phpunit 5.0* was used for testing the classes.
 
+ ## Installation
+
+It is recommended that you install the Dictionary library [through composer](http://getcomposer.org/). To do so, add the following lines to your ``composer.json`` file.
+
+```json
+{
+    "require": {
+       "florence/dictionary": "dev-master"
+    }
+}
+```
+
 ## Usage
 
 ``` composer require florence/dictionary ```
