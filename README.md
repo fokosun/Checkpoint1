@@ -7,8 +7,7 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 ## Classes
 - Data: The main dictionary, a static associative array that contains urban words
-- Dictionary: CRUD operations and Ranking.
-- Rank: Returns a word count in descending order of words used in sample sentences within the dictionary
+- Dictionary: CRUD implememntaions and Ranking.
 
 ## Testing
  Phpunit 5.0* was used for testing the classes.
