@@ -53,7 +53,8 @@ foreach(Data::$data as $row => $innerArray)
 
         echo $output;
         echo "<br>";
-    } ```
+    }
+```
 
 
 
