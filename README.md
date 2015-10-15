@@ -5,8 +5,11 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 [![Build Status](https://travis-ci.org/andela-fokosun/Checkpoint1.svg)](https://travis-ci.org/andela-fokosun/Checkpoint1) [![Latest Stable Version](https://poser.pugx.org/florence/dictionary/v/stable)](https://packagist.org/packages/florence/dictionary) [![Total Downloads](https://poser.pugx.org/florence/dictionary/downloads)](https://packagist.org/packages/florence/dictionary) [![Latest Unstable Version](https://poser.pugx.org/florence/dictionary/v/unstable)](https://packagist.org/packages/florence/dictionary) [![License](https://poser.pugx.org/florence/dictionary/license)](https://packagist.org/packages/florence/dictionary)
 
 ## Classes
-- Data: The main dictionary, a static associative array that contains urban words
-- Dictionary: CRUD implementations and Ranking System Implementation.
+- Data: 
+The main dictionary, a static associative array that contains urban words
+
+- Dictionary: 
+CRUD implementations and Ranking System Implementation.
 
 ## Testing
  Phpunit 5.0 was used for testing the classes.
@@ -50,7 +53,7 @@ $dictionary = new Dictionary($dictionary);
 
 ### Implement Ranking
 
-You can now traverse through the array to get your desired output like so:
+You can now traverse through the Data array to get your desired output like so:
 
 ```
 foreach(Data::$data as $row => $innerArray)
@@ -67,13 +70,13 @@ foreach(Data::$data as $row => $innerArray)
             $output .= "$key => $value".', ';
         }
 
-        $output = rtrim("{".$output,','."}")."<br>";
+        $output = rtrim("[".$output,','."]")."<br>";
 
         // print the final output
 
         echo $output;
         echo "<br>";
-    }
+}
 ```
 
 Sample Output:
