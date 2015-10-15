@@ -50,7 +50,7 @@ $ranker->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, yo
     {
         // $getRank = $ranker->rankWords($value);\
 
-        echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
+        //echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
 
         $res = $innerArray['Sample-sentence'];
 
@@ -63,7 +63,7 @@ $ranker->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, yo
                 $output .= "$key => $value".', ';
             }
 
-            $output = rtrim("Output: "."<br>".$output,',')."<br>";
+            $output = rtrim("{".$output,','."}")."<br>";
 
             // print the final output
 

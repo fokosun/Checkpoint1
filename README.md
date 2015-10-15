@@ -54,8 +54,7 @@ You can now traverse through the array to get your desired output like so:
 
 ```
 foreach(Data::$data as $row => $innerArray)
-{
-    echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
+{   
 
     $res = $innerArray['Sample-sentence'];
 
@@ -68,7 +67,7 @@ foreach(Data::$data as $row => $innerArray)
             $output .= "$key => $value".', ';
         }
 
-        $output = rtrim("Output: "."<br>".$output,',')."<br>";
+        $output = rtrim("{".$output,','."}")."<br>";
 
         // print the final output
 
