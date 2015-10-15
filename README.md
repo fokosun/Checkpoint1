@@ -13,7 +13,20 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 ## Usage
 
+### first things first:
+
+```
+$dictionary = Data::$data;
+
+$dictionary = new Dictionary($dictionary); 
+
+```
+
 ### Add Slang
+```
+    $dictionary->addSlang($slang, $description, $sentence);
+
+```
 
 ### Remove Slang
 
@@ -24,13 +37,6 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 
 ### Implement Ranking
-
-```
-$dictionary = Data::$data;
-
-$ranker = new Dictionary($dictionary); 
-
-```
 
 You can now traverse through the array to get your desired output like so:
 
