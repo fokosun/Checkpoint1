@@ -1,4 +1,5 @@
-# :Checkpoint One
+
+# Checkpoint One
 An agnostic package that conforms with thephpleague.com specifications and uses the Test Driven Development process (PHPUnit)
 
 [![Build Status](https://travis-ci.org/andela-fokosun/Checkpoint1.svg)](https://travis-ci.org/andela-fokosun/Checkpoint1) [![Latest Stable Version](https://poser.pugx.org/florence/dictionary/v/stable)](https://packagist.org/packages/florence/dictionary) [![Total Downloads](https://poser.pugx.org/florence/dictionary/downloads)](https://packagist.org/packages/florence/dictionary) [![Latest Unstable Version](https://poser.pugx.org/florence/dictionary/v/unstable)](https://packagist.org/packages/florence/dictionary) [![License](https://poser.pugx.org/florence/dictionary/license)](https://packagist.org/packages/florence/dictionary)
@@ -10,21 +11,50 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 ## Testing
  Phpunit 5.0 was used for testing the classes.
 
-## Installation
-
-It is recommended that you install the Dictionary library [through composer](http://getcomposer.org/). To do so, add the following lines to your ``composer.json`` file.
-
-```json
-{
-    "require": {
-       "florence/dictionary": "dev-master"
-    }
-}
-```
-
 ## Usage
 
-``` composer require florence/dictionary ```
+### Add Slang
+
+### Remove Slang
+
+### Update Slang
+
+### Delete Slang
+
+
+
+### Implement Ranking
+
+``` $dictionary = Data::$data;
+
+$ranker = new Dictionary($dictionary); ```
+
+You can now traverse through the array to get your desired output like so:
+
+```
+foreach(Data::$data as $row => $innerArray)
+{
+    echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
+
+    $res = $innerArray['Sample-sentence'];
+
+    $getRank = $ranker->rankWords($res);
+
+    $output = '';
+
+        foreach($getRank as $key => $value)
+        {
+            $output .= "$key => $value".', ';
+        }
+
+        $output = rtrim("Output: "."<br>".$output,',')."<br>";
+
+        // print the final output
+
+        echo $output;
+        echo "<br>";
+    } ```
+
 
 
 ## Contributing

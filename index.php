@@ -17,7 +17,6 @@ foreach(Data::$data as $row => $innerArray)
     }
 }
 
-
 //Task Two:
 
 echo "<h1>Task 2 - Implement CRUD:</h1>".PHP_EOL;
@@ -30,18 +29,44 @@ echo "<h4>To Update Slang:</h4> - implement using updateSlang('$'slang, '$'descr
 
 echo "<h4>To Delete Slang:</h4> - implement using removeSlang('$'slang); <p> e.g. '$'newSlang->removeSlang('Yimu');</p>";
 
+
+
+//Task Three:
+
 echo "<h1>Task 3 - Implement Ranking System:</h1>".PHP_EOL;
 
 // var_dump(Data::$data[0]);
 
 $dictionary = Data::$data;
-        $ranker = new Dictionary($dictionary);
-        $getRank = $ranker->rankWords('Prosper, Have you finished the curriculum? Yes, Tight, Tight, Tight!');
-        print_r($getRank);
 
-// $dictionary->addSlang('Mheen', 'Casual expression', 'Mheen, i just dey oh!');
+// var_dump($dictionary[0]['Sample-sentence']);
 
-
-// print_r($dictionary->getData());
+$ranker = new Dictionary($dictionary);
 
 
+$ranker->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, your code is not passing.');
+
+    foreach(Data::$data as $row => $innerArray)
+    {
+        // $getRank = $ranker->rankWords($value);\
+
+        echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
+
+        $res = $innerArray['Sample-sentence'];
+
+        $getRank = $ranker->rankWords($res);
+
+        $output = '';
+
+            foreach($getRank as $key => $value)
+            {
+                $output .= "$key => $value".', ';
+            }
+
+            $output = rtrim("Output: "."<br>".$output,',')."<br>";
+
+            // print the final output
+
+        echo $output;
+        echo "<br>";
+    }
