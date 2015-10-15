@@ -23,16 +23,28 @@ $dictionary = new Dictionary($dictionary);
 ```
 
 ### Add Slang
+
 ```
     $dictionary->addSlang($slang, $description, $sentence);
-
 ```
 
-### Remove Slang
+### Retrieve Slang
+
+```
+    $dictionary->addSlang($slang);
+```
 
 ### Update Slang
 
+```
+    $dictionary->addSlang($slang, $description, $sentence);
+```
+
 ### Delete Slang
+
+```
+    $dictionary->addSlang($slang);
+```
 
 
 
