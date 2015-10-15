@@ -25,9 +25,12 @@ An agnostic package that conforms with thephpleague.com specifications and uses 
 
 ### Implement Ranking
 
-``` $dictionary = Data::$data;
+```
+$dictionary = Data::$data;
 
-$ranker = new Dictionary($dictionary); ```
+$ranker = new Dictionary($dictionary); 
+
+```
 
 You can now traverse through the array to get your desired output like so:
 
@@ -54,6 +57,12 @@ foreach(Data::$data as $row => $innerArray)
         echo $output;
         echo "<br>";
     }
+```
+
+Sample Output:
+```
+[“Tight” => 3, “Prosper” => 2, “Yes” => 1, “Have” => 1, “you” => 1, “finished” => 1, “the” => 1, “curriculum?” => 1]
+
 ```
 
 
