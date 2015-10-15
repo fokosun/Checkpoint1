@@ -14,6 +14,15 @@ CRUD implementations and Ranking System Implementation.
 ## Testing
  Phpunit 5.0 was used for testing the classes.
 
+## Installation
+
+Require via composer like so:
+
+```
+    composer require florence/dictionary
+
+```
+
 ## Usage
 
 ### first things first:
