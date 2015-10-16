@@ -2,7 +2,7 @@
 <phpunit bootstrap="./vendor/autoload.php" colors="true">
 
     <testsuites>
-        <testsuite name="League Test Suite">
+        <testsuite name="Florence/Dictionary Test Suite">
             <directory suffix="Test.php">Tests</directory>
         </testsuite>
     </testsuites>
@@ -10,5 +10,8 @@
         <blacklist>
             <directory>./vendor</directory>
         </blacklist>
+        <whitelist>
+            <directory>./tests</directory>
+        </whitelist>
     </filter>
 </phpunit>
