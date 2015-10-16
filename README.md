@@ -63,6 +63,8 @@ $dictionary = new Dictionary($dictionary);
 
 ### Implement Ranking
 
+The ranking system is implemented using the ``rankWords()`` method.
+
 You can now traverse through the Data array to get your desired output like so:
 
 ```
