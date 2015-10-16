@@ -2,9 +2,6 @@
 
 namespace Florence;
 
-use Florence\Data;
-use Florence\Dictionary;
-
 class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
     protected $dictionary;
@@ -38,6 +35,21 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotEmpty($stack);
 
+    }
+
+    /** test three
+    * @dataProvider dataSource
+    */
+
+    public function testRemoveSlang($slang, $meaning, $sentence)
+    {
+        $stack = array($this->dictionary);
+
+        array_push($stack, $slang, $meaning, $sentence);
+
+        $this->assertEquals($slang, $meaning, $sentence, array_pop($this->stack));
+
+        $this->assertTrue(empty($this->stack));
     }
 
     public function dataSource()
