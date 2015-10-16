@@ -2,13 +2,10 @@ before_commands:
     - "composer install --prefer-source"
 
 build:
-    dependencies:
-        before:
-            - pecl install ssh-beta
 
     tests:
         override:
             -
-                command: phpunit tests/
+                command: phpunit tests
                 on_node: 1
 
