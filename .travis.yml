@@ -32,8 +32,7 @@ install:
   - composer install --prefer-dist --no-interaction
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover
-  - phpunit --configuration phpunit_$DB.xml --coverage-text
+  - phpunit
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
