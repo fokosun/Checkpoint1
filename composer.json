@@ -13,14 +13,15 @@
 
     "require":
     {
-        "php": ">=5.6",
+        "php" : ">=5.5.9",
         "phpunit/phpunit": "4.8.*",
         "pugx/badge-poser": "^2.2"
     },
 
-    "require-dev": {
-
-   },
+    "require-dev":
+    {
+    }
+,
 
      "autoload":
      {
