@@ -29,9 +29,9 @@ Require via composer like so:
 ### first things first:
 
 ```
-$dictionary = Data::$data;
+    $dictionary = Data::$data;
 
-$dictionary = new Dictionary($dictionary); 
+    $dictionary = new Dictionary($dictionary); 
 
 ```
 
