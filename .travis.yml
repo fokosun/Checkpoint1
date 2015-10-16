@@ -33,4 +33,3 @@ install:
 
 script:
   - vendor/bin/phpunit
-  - php coverage-checker.php clover.xml 75
