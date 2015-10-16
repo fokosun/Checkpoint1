@@ -37,20 +37,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /** test three
-    * @dataProvider dataSource
-    */
 
-    public function testRemoveSlang($slang, $meaning, $sentence)
-    {
-        $stack = array($this->dictionary);
-
-        array_push($stack, $slang, $meaning, $sentence);
-
-        $this->assertEquals($slang, $meaning, $sentence, array_pop($this->stack));
-
-        $this->assertTrue(empty($this->stack));
-    }
 
     public function dataSource()
     {
