@@ -28,11 +28,9 @@ before_install:
   - composer self-update
   - composer validate
 
-install:
-  - composer install --prefer-dist --no-interaction
+install: travis_retry composer install --no-interaction --prefer-source
 
-script:
-  - phpunit
+script: vendor/bin/phpunit
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
