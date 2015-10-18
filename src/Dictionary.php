@@ -13,15 +13,10 @@ class Dictionary
     * Initialize the constructor
     */
 
-    public function __construct( $init )
+    public function __construct( $data )
     {
 
-        if( !(isset( $init )) )
-        {
-            $this->data = Data::$data;
-        }
-
-        $this->data = $init;
+        $this->data = Data::$data;
 
     }
 
@@ -55,6 +50,12 @@ class Dictionary
     public function addSlang( $slang, $description, $sentence )
     {
 
+        /* Quick check if the slang exists in
+        * the dictionary already
+        * if yes, throw WordExistsException
+        * else add the slang
+        */
+
         if(! array_key_exists($slang, $this->data))
         {
             $this->data[$slang] = [
@@ -78,9 +79,7 @@ class Dictionary
     public function updateSlang( $slang, $description, $sentence )
     {
 
-        $data = $this->data[$slang];
-
-        if( array_key_exists($slang, $this->data) )
+        if( $this->arrayKeyExists($slang) )
         {
             $data['description'] = $description;
             $data['sample-sentence'] = $sentence;
@@ -99,7 +98,7 @@ class Dictionary
     public function findSlang( $slang )
     {
 
-        if( array_key_exists( $slang, $this->data) )
+        if( $this->arrayKeyExists($slang))
         {
             return $this->data[$slang];
         }
@@ -107,6 +106,14 @@ class Dictionary
         {
             throw new WordNotFoundException( $slang . ' not found in the dictionary' );
         }
+
+    }
+
+    public function arrayKeyExists($slang)
+    {
+        $data = $this->data[$slang];
+        if( array_key_exists( $slang, $this->data) )
+            return true;
 
     }
 
@@ -135,9 +142,12 @@ class Dictionary
 
     public function rankWords( $sentence )
     {
+        /* $words is returned as an array*/
 
         $words = str_word_count( $sentence, 1 );
         $ranking = [];
+
+        /* traverse through the $words array */
 
         foreach( $words as $word )
         {
