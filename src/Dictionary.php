@@ -13,7 +13,7 @@ class Dictionary
     * Initialize the constructor
     */
 
-    public function __construct( $data )
+    public function __construct()
     {
 
         $this->data = Data::$data;
@@ -79,6 +79,8 @@ class Dictionary
     public function updateSlang( $slang, $description, $sentence )
     {
 
+        $data = array();
+
         if( $this->arrayKeyExists($slang) )
         {
             $data['description'] = $description;
@@ -111,10 +113,8 @@ class Dictionary
 
     public function arrayKeyExists($slang)
     {
-        $data = $this->data[$slang];
         if( array_key_exists( $slang, $this->data) )
             return true;
-
     }
 
     /**
