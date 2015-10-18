@@ -128,6 +128,7 @@ class Dictionary
 
     }
 
+
     /**
     * Group the same words according to the number of occurrences in a given sentence.
     */
@@ -137,8 +138,6 @@ class Dictionary
 
         $words = str_word_count( $sentence, 1 );
         $ranking = [];
-        $tag = [];
-        $count = [];
 
         foreach( $words as $word )
         {
