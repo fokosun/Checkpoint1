@@ -11,16 +11,30 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         $this->dictionary = new Dictionary(Data::$data);
     }
 
-    /* test one
-    ** This one tests if my associative array is empty
+
+    /** test one
+    * @dataProvider dataSource
+    *
     */
-    public function testNotEmpty()
+
+    public function testSampleSentenceContainsSlang($slang, $meaning, $sentence)
     {
-        $this->assertNotEmpty(($this->dictionary));
+        $result = array($slang, $sentence);
+        $this->assertContains($slang, $sentence);
     }
 
-
     /** test two
+    * @dataProvider dataSource
+    *
+    */
+
+    public function testSampleSentenceNotEmpty($slang, $sentence)
+    {
+        $result = array($slang, $sentence);
+        $this->assertNotEmpty($slang, $sentence);
+    }
+
+    /** test three
     * @dataProvider dataSource
     * This one tests push operation
     */
@@ -39,7 +53,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /** test three
+    /** test four
     * tests for findSlang
     */
 
@@ -58,7 +72,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /** test four
+    /** test five
     * tests for updateSlang
     */
 
@@ -74,7 +88,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Hold your bar', $this->dictionary->getData()['bar']['sample-sentence']);
     }
 
-    /** test five
+    /** test six
     *
     * This one tests removeSlang
     */
@@ -90,7 +104,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /** test six
+    /** test seven
     *
     * Ranks test
     */
@@ -108,6 +122,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    /* Datasource used for testing */
 
     public function dataSource()
     {
