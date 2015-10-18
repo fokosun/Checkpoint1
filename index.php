@@ -35,11 +35,11 @@ echo "<h4>To Delete Slang:</h4> - implement using removeSlang('$'slang); <p> e.g
 
 echo "<h1>Task 3 - Implement Ranking System:</h1>".PHP_EOL;
 
-// var_dump(Data::$data[0]);
+
 
 $dictionary = Data::$data;
 
-// var_dump($dictionary[0]['Sample-sentence']);
+
 
 $ranker = new Dictionary($dictionary);
 
@@ -48,9 +48,6 @@ $ranker->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, yo
 
     foreach(Data::$data as $row => $innerArray)
     {
-        // $getRank = $ranker->rankWords($value);\
-
-        //echo("Sample-sentence: "."<br>".$innerArray['Sample-sentence'])."<br>";
 
         $res = $innerArray['Sample-sentence'];
 

@@ -167,6 +167,9 @@ class Dictionary
 
         foreach( $ranking as $key => $value )
         {
+            $tag = array();
+            $count = array();
+
             $tag [] = $key;
             $count [] = $value;
         }
