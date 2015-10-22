@@ -12,8 +12,8 @@ class Data
 
         [
             "Slang"           => "Tight",
-            "Description"     => "When someone performs an awesome task.",
-            "Sample-sentence" => "Prosper, you have finished the curriculum, Yes? Tight, Tight, Tight!!!"
+            "Description"     => "When someone performs an awesome task",
+            "Sample-sentence" => "Prosper, you have finished the curriculum, Yes? Tight, Tight, Tight"
         ],
 
         [

@@ -18,14 +18,37 @@ class Dictionary {
 
     public function addSlangToDictionary($slang, $meaning, $sentence) {
 
+        $numargs = func_num_args();
+
         if(! array_key_exists($slang, $this->data)) {
             $this->data[$slang] = [
                 'slang' => $slang,
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
+
+            $exit_code = 0;
+
         } else {
             throw new WordExistsException( $slang . ' already exists in the dictionary' );
+
+            $exit_code = 1;
+        }
+
+        return $exit_code;
+
+    }
+
+    /*
+    * @depends addSlangToDictionary
+    */
+
+    public function getNumArgs() {
+
+        if($exit_code == 0) {
+            return $this->numargs;
+        } else {
+            return $this->numargs;
         }
 
     }
@@ -35,8 +58,6 @@ class Dictionary {
         if(array_key_exists($slang, $this->data)) {
 
             unset ( $this->data[$slang] );
-
-        }
 
         } else {
 
@@ -90,3 +111,4 @@ class Dictionary {
     }
 
 }
+
