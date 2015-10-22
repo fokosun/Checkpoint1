@@ -12,48 +12,91 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** test one
-    * @dataProvider dataSource
-    *
-    */
+    public function testDictionaryIsNotEmpty()
+    {
+        $this->assertNotEmpty(array($this->dictionary->getData()));
+    }
 
+    /**
+    * @dataProvider dataSource
+    */
     public function testSampleSentenceContainsSlang($slang, $meaning, $sentence)
     {
         $result = array($slang, $sentence);
         $this->assertContains($slang, $sentence);
     }
 
-    /** test two
-    * @dataProvider dataSource
-    *
-    */
+    /* Data provider for testSampleSentenceContainsSlang */
 
-    public function testSampleSentenceNotEmpty($slang, $sentence)
+    public function dataSource()
     {
-        $result = array($slang, $sentence);
-        $this->assertNotEmpty($slang, $sentence);
+        return array (
+            array('wording', 'warning', 'you dont want wording')
+        );
     }
 
-    /** test three
-    * @dataProvider dataSource
+    /**
+    * @dataProvider slangsArrayDataSource
     * This one tests push operation
     */
 
-    public function testAddSlang($slang, $meaning, $sentence)
+    public function testArrayContainsSlang($slangs)
     {
-        $stack = array($this->dictionary);
-
-        array_push($stack, array($slang, $meaning, $sentence));
-
-        $this->assertEquals(array($slang, $meaning, $sentence), $stack[count($stack)-1]);
-
-        $this->assertNotEmpty($stack);
-
-        // return $stack;
-
+        $this->assertContains('Crash',  ($slangs));
     }
 
-    /** test four
+    /* This is the data provider */
+
+    public function slangsArrayDataSource() {
+
+    $array = [
+
+        [
+            "Slang"           => "Tight",
+            "Description"     => "When someone performs an awesome task.",
+            "Sample-sentence" => "Prosper, you have finished the curriculum, Yes? Tight, Tight, Tight!!!"
+        ],
+
+        [
+            "Slang"           => "Crash",
+            "Description"     => "To sleep in an unusual location.",
+            "Sample-sentence" => "It's been a while since I crashed at a friend's, Can I crash at your place?"
+        ],
+
+        [
+            "Slang"           => "Lift",
+            "Description"     => "To steal an item",
+            "Sample-sentence" => "Seyi still can't believe Amitab could lift her phone."
+        ],
+
+        [
+            "Slang"           => "Oshey",
+            "Description"     => "Colloquial way of showing appreciation",
+            "Sample-sentence" => "Oshey! Oshey! Oshey!, my tests are passing."
+        ],
+
+        [
+            "Slang"           => "Grab",
+            "Description"     => "A way of describing a girl's physique",
+            "Sample-sentence" => "Oh boy, this babe grab grab die oh!."
+        ],
+
+    ];
+
+    $slangs=[];
+
+    foreach ($array as $row => $innerArray) {
+
+        $res[] = $innerArray['Slang'];
+    }
+
+    array_push($slangs, $res);
+
+        return
+            array($slangs);
+    }
+
+    /**
     * tests for findSlang
     */
 
@@ -72,7 +115,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /** test five
+    /**
     * tests for updateSlang
     */
 
@@ -122,14 +165,6 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /* Datasource used for testing */
 
-    public function dataSource()
-    {
-        return array (
 
-            array('wording', 'warning', 'you dont want wording')
-
-        );
-    }
 }

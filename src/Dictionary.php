@@ -2,8 +2,6 @@
 
 namespace Florence;
 
-use InvalidArgumentException;
-
 class Dictionary
 {
 

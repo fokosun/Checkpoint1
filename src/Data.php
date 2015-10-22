@@ -2,6 +2,10 @@
 
 namespace Florence;
 
+/*
+*class that possess a static associative array that contains urban words
+*/
+
 class Data
 {
     public static $data = [
