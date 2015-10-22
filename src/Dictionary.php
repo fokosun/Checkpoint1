@@ -2,8 +2,7 @@
 
 namespace Florence;
 
-use Florence\Data;
-use Florence\Exceptions\WordNotFoundException;
+use \InvalidArgumentException;
 
 class Dictionary {
 
@@ -34,28 +33,16 @@ class Dictionary {
             return $this->data;
 
         } else {
-            throw new WordExistsException( $slang . ' already exists in the dictionary' );
+            // throw new WordExistsException( $slang . ' already exists in the dictionary' );
+            throw new InvalidArgumentException($slang . ' already exists in the dictionary');
         }
 
     }
 
-    /*
-    * @depends addSlangToDictionary
-    */
-
-    public function getNumArgs() {
-
-        if($exit_code == 0) {
-            return $this->numargs;
-        } else {
-            return $this->numargs;
-        }
-
-    }
 
     public function deleteSlangFromDictionary($slang) {
 
-        if((array_key_exists($slang, $this->data))) {
+        if(array_key_exists($slang, $this->data)) {
 
             unset ( $this->data[$slang] );
 
@@ -63,7 +50,7 @@ class Dictionary {
 
         } else {
 
-            throw new \WordNotFoundException( $slang . " ". 'not found in the dictionary' );
+            throw new InvalidArgumentException($slang . ' not found in the dictionary');
         }
 
     }
@@ -74,45 +61,38 @@ class Dictionary {
 
             $this->data[$slang] = [
                 'slang' => $slang,
-                'meaning' => $meaning,
-                'sentence' => $sentence
+                'description' => $meaning,
+                'sample-sentence' => $sentence
             ];
 
             return $this->data;
 
         } else {
 
-            throw new WordNotFoundException( $slang . 'word not found in the dictionary' );
+            throw new InvalidArgumentException($slang . ' not found in the dictionary');
+
         }
     }
 
     public function findAndRetrieveSlang( $slang ) {
 
-        if( array_key_exists($slang, $this->data) ) {
+        if ( array_key_exists($slang, $this->data) ) {
             return $this->data[$slang];
         } else {
-            throw new WordNotFoundException( $slang . ' word not found in the dictionary' );
+            throw new InvalidArgumentException($slang . ' not found in the dictionary');
         }
 
     }
 
     public function rankAndSort($sentence) {
 
-        $unsorted = [];
-        $sorted = [];
+        $ranker = [];
 
-        $unsorted = (array_count_values(str_word_count(strtolower($sentence),1)));
+        $ranker = (array_count_values(str_word_count(strtolower($sentence),1)));
 
-        arsort($unsorted);
+        arsort($ranker);
 
-        foreach($unsorted as $key => $val) {
-            $word = $key;
-            $count = $val;
-            array_push($sorted,[$word => $count]);
-        }
-
-        return $sorted;
+        return $ranker;
     }
 
 }
-
