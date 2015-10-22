@@ -11,15 +11,42 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         $this->dictionary = new Dictionary(Data::$data);
     }
 
-    public function testAddSlangToDictionaryIsSuccessful() {
+    public function testAddSlangToDictionary() {
 
-        $this->assertEquals(0, $this->dictionary->addSlangToDictionary('gala', 'snack', 'buy three gala for me'));
+        $arr = [
+            "slang" => "gala",
+            "description" => 'snack',
+            "sample-sentence" => "I bought gala for free today!"
+        ];
+
+        $this->assertEquals($arr, end($this->dictionary->addSlangToDictionary('gala',
+            'snack',
+            'I bought gala for free today!'
+        )));
 
     }
 
-    public function testAddSlangHasExactlyThreeArgs() {
+    /**
+     * @expectedException WordNotFoundException
+    */
 
-        $this->assertEquals(3, $this->dictionary->getNumArgs());
+    public function testDeleteSlangFromDictionary() {
+
+      $this->assertArrayHasKey( 'gala', end($this->dictionary->deleteSlangFromDictionary('tight')) );
+
     }
+
+
+    public function testFindAndRetrieveSlang() {
+
+
+
+    }
+
+    public function testRankAndSort() {
+
+    }
+
+
 
 }

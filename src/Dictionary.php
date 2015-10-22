@@ -3,6 +3,7 @@
 namespace Florence;
 
 use Florence\Data;
+use Florence\Exceptions\WordNotFoundException;
 
 class Dictionary {
 
@@ -18,7 +19,9 @@ class Dictionary {
 
     public function addSlangToDictionary($slang, $meaning, $sentence) {
 
-        $numargs = func_num_args();
+        // $numargs = func_num_args();
+
+        // $exit_code = false;
 
         if(! array_key_exists($slang, $this->data)) {
             $this->data[$slang] = [
@@ -27,15 +30,12 @@ class Dictionary {
                 'sample-sentence' => $sentence
             ];
 
-            $exit_code = 0;
+            // $exit_code = true;
+            return $this->data;
 
         } else {
             throw new WordExistsException( $slang . ' already exists in the dictionary' );
-
-            $exit_code = 1;
         }
-
-        return $exit_code;
 
     }
 
@@ -55,13 +55,15 @@ class Dictionary {
 
     public function deleteSlangFromDictionary($slang) {
 
-        if(array_key_exists($slang, $this->data)) {
+        if((array_key_exists($slang, $this->data))) {
 
             unset ( $this->data[$slang] );
 
+            return $this->data;
+
         } else {
 
-            throw new WordNotFoundException( $slang . 'word not found in the dictionary' );
+            throw new \WordNotFoundException( $slang . " ". 'not found in the dictionary' );
         }
 
     }
@@ -75,6 +77,8 @@ class Dictionary {
                 'meaning' => $meaning,
                 'sentence' => $sentence
             ];
+
+            return $this->data;
 
         } else {
 
