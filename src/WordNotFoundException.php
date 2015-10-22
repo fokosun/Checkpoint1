@@ -1,8 +1,8 @@
 <?php
 
-namespace Florence;
 
-use Exception;
+use Florence\Dictionary;
+
 
 class WordNotFoundException extends Exception
 {

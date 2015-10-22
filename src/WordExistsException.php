@@ -4,7 +4,7 @@ namespace Florence;
 
 use Exception;
 
-class WordExistsException extends Exception
+class WordFoundException extends Exception
 {
 
 	protected $message;

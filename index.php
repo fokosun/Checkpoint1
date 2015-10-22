@@ -1,69 +1,18 @@
 <?php
 
-namespace Florence;
-
 require_once "vendor/autoload.php";
 
-//Task One:
+use Florence\Dictionary;
+use Florence\Data;
 
-echo "<h1>Task 1 - Create Data Array (Class name: Data.php): </h1>";
+$dictionary = new Dictionary;
 
-foreach(Data::$data as $row => $innerArray)
-{
-    foreach ( $innerArray as $innerRow => $value )
-    {
-        echo $innerRow. ": ";
-        echo $value . "<br><br>";
-    }
-}
+$dictionary->addSlangToDictionary('Oshey', 'Yoruba term for showing appreciation', 'Your tests rae passing Oshey!');
 
-//Task Two:
+var_dump($dictionary->getData()) ;
 
-echo "<h1>Task 2 - Implement CRUD:</h1>".PHP_EOL;
+// foreach($this->data as $key) {
 
-echo "<h4>To Add Slang:</h4> - implement using addSlang('$'slang, '$'description, '$'sentence); <p> e.g. '$'newSlang->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, your code is not passing.');</p>";
+//     var_dump($key);
 
-echo "<h4>To Retrieve Slang:</h4> - implement using findSlang('$'slang); <p> e.g. '$'newSlang->addSlang('Yimu');</p>";
-
-echo "<h4>To Update Slang:</h4> - implement using updateSlang('$'slang, '$'description, '$'sentence); <p> e.g. '$'newSlang->updateSlang('Yimmu', 'Way of showing disapproval or envy', 'Yimmu at you, your code is not passing.');</p>";
-
-echo "<h4>To Delete Slang:</h4> - implement using removeSlang('$'slang); <p> e.g. '$'newSlang->removeSlang('Yimu');</p>";
-
-
-
-//Task Three:
-
-echo "<h1>Task 3 - Implement Ranking System:</h1>".PHP_EOL;
-
-
-
-$dictionary = Data::$data;
-
-
-
-$ranker = new Dictionary($dictionary);
-
-
-$ranker->addSlang('Yimu', 'Way of showing disapproval or envy', 'Yimu at you, your code is not passing.');
-
-    foreach(Data::$data as $row => $innerArray)
-    {
-
-        $res = $innerArray['Sample-sentence'];
-
-        $getRank = $ranker->rankWords($res);
-
-        $output = '';
-
-            foreach($getRank as $key => $value)
-            {
-                $output .= "$key => $value".', ';
-            }
-
-            $output = rtrim("{".$output,','."}")."<br>";
-
-            // print the final output
-
-        echo $output;
-        echo "<br>";
-    }
+// }
