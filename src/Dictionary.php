@@ -2,6 +2,9 @@
 
 namespace Florence;
 
+// use Exceptions\WordExistsException;
+// use Exceptions\WordNotFoundException;
+
 class Dictionary {
 
     private $data;
@@ -16,18 +19,15 @@ class Dictionary {
 
     public function addSlangToDictionary($slang, $meaning, $sentence) {
 
-        // $numargs = func_num_args();
-
-        // $exit_code = false;
-
         if(! array_key_exists($slang, $this->data)) {
-            $this->data[$slang] = [
+            $arr= [
                 'slang' => $slang,
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
 
-            // $exit_code = true;
+            array_push($this->data, $arr);
+
             return $this->data;
 
         } else {

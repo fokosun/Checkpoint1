@@ -24,6 +24,8 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
             'snack',
             'I bought gala for free today!'
         )));
+
+        // var_dump($this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!'));
     }
 
     /**
