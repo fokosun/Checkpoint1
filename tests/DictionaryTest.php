@@ -20,13 +20,14 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
             "sample-sentence" => "I bought gala for free today!"
         ];
 
+        // fetches the temporary variable created in memory and stores in $fetched
         $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
 
+        // gets the last item in the returned array
         $actual = end($fetched);
 
         $this->assertEquals($expected, $actual);
 
-        // var_dump($this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!'));
     }
 
     /**
@@ -54,6 +55,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->assertEquals($arr, $this->dictionary->updateExistingSlang('gala', 'nano', 'nano gala night lights for sale'));
+
     }
 
 
