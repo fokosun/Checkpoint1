@@ -20,7 +20,9 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
             "sample-sentence" => "I bought gala for free today!"
         ];
 
-        $actual = (end($this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!')));
+        $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
+
+        $actual = end($fetched);
 
         $this->assertEquals($expected, $actual);
 
