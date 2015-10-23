@@ -1,6 +1,6 @@
 <?php
 
-namespace Florence;
+namespace Florence\Exceptions;
 
 class WordNotFoundException extends \Exception {
 

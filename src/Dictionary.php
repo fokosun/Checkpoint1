@@ -20,12 +20,11 @@ class Dictionary {
     public function addSlangToDictionary($slang, $meaning, $sentence) {
         if(! array_key_exists($slang, $this->data)) {
             $arr= [
-                'slang' => $slang,
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
 
-            array_push($this->data, $arr);
+            $this->data[$slang] = $arr;
 
             return $this->data;
 
@@ -36,42 +35,37 @@ class Dictionary {
 
     public function deleteSlangFromDictionary($slang) {
 
-        $dataset = $this->data;
-        $wordexists = false;
+        if(array_key_exists($slang, $this->data)) {
+            unset($this->data[$slang]);
 
-        for ($i=0; $i < count($dataset); $i++) {
-            if($dataset[$i]["slang"] = $slang) {
-                // $a = array_splice($dataset, $i, 1);
-                $b = array_slice($dataset[$i], -1, 1);
-
-                return $b;
-            }
+            return true;
         }
-
-        if(! $wordexists) {
-            throw new WordNotFoundException($slang . ' not found in the dictionary');
-        }
+        throw new WordNotFoundException($slang . ' not found in the dictionary');
     }
 
     public function updateExistingSlang($slang, $meaning, $sentence) {
-        $update= [
-                'slang' => $slang,
+        if(array_key_exists($slang, $this->data)) {
+            $arr= [
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
-            array_push($this->data, $update);
 
-            return end($this->data);
+            $this->data[$slang] = $arr;
+
+            return true;
+        }
+        throw new WordNotFoundException($slang . ' not found in the dictionary');
     }
 
     public function findAndRetrieveSlang($slang) {
-        $dataset = $this->data;
 
-        for ($i=0; $i < count($dataset) ; $i++) {
-            $key = is_array($dataset[$i]) ? true : $slang;
+
+        $res = $this->data[$slang];
+        if(is_null($res)) {
+            throw new WordNotFoundException($slang . ' not found in the dictionary');
         }
 
-        return $key;
+        return $res;
     }
 
     public function rankAndSort($sentence) {

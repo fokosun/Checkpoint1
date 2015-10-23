@@ -14,19 +14,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testAddSlangToDictionary() {
-        $expected = [
-            "slang" => "gala",
-            "description" => "snack",
-            "sample-sentence" => "I bought gala for free today!"
-        ];
 
         // fetches the temporary variable created in memory and stores in $fetched
         $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
 
-        // gets the last item in the returned array
-        $actual = end($fetched);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertArrayHasKey('gala', $fetched);
 
     }
 
@@ -36,27 +28,30 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteSlangFromDictionary() {
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
-        $slang = ['slang' => 'gala'];
-        $this->assertEquals($slang, $this->dictionary->deleteSlangFromDictionary('gala'));
+        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('gala'));
+        $this->assertNotContains('gala', $this->dictionary->getData());
     }
 
-    /**
-     *
-    */
 
     public function testUpdateExistingSlang() {
         $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
-        $arr = [
-            "slang" => "chop",
-            "description" => 'to eat or pieces',
-            "sample-sentence" => "get those chops and chop them off"
-        ];
-        $this->assertEquals($arr, $this->dictionary->updateExistingSlang('chop', 'to eat or pieces', 'get those chops and chop them off'));
+        $res = $this->dictionary->updateExistingSlang('chop', 'chinese cutlery', 'one too many chop sticks to chop');
+
+        $this->assertTrue($res);
+        $this->assertNotEquals('to eat or pieces', $this->dictionary->getData()['chop']['description']);
+        $this->assertEquals('chinese cutlery', $this->dictionary->getData()['chop']['description']);
     }
 
 
+
     public function testFindAndRetrieveSlang() {
-        $this->assertEquals(true, $this->dictionary->findAndRetrieveSlang('gala'));
+        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
+
+        $res = $this->dictionary->findAndRetrieveSlang('chop');
+
+        $this->assertNotEmpty($res);
+        $this->assertEquals('to eat or pieces', $res['description']);
+
     }
 
 

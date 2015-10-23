@@ -22,9 +22,17 @@
      {
         "psr-4":
         {
-        "Florence\\" : "src/"
+        "Florence\\" : "src/",
+        "Florence\\Exceptions\\" : "src/Exceptions"
         },
 
         "classmap": ["src/"]
-    }
+    },
+
+    "autoload-dev": {
+   "psr-4": {
+     "Florence\\": "tests/"
+   }
+ }
+
 }
