@@ -2,8 +2,8 @@
 
 namespace Florence;
 
-// use Exceptions\WordExistsException;
-// use Exceptions\WordNotFoundException;
+use Exceptions\WordExistsException;
+use Exceptions\WordNotFoundException;
 
 class Dictionary {
 
