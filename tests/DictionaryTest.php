@@ -2,8 +2,8 @@
 
 namespace Florence;
 
-require "src/Exceptions/WordExistsException.php";
-require "src/Exceptions/WordNotFoundException.php";
+use Exceptions\WordExistsException;
+use Exceptions\WordNotFoundException;
 
 class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
