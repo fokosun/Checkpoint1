@@ -56,7 +56,6 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
             "description" => 'to eat or pieces',
             "sample-sentence" => "get those chops and chop them off"
         ];
-
         $this->assertEquals($arr, $this->dictionary->updateExistingSlang('chop', 'to eat or pieces', 'get those chops and chop them off'));
         // var_dump($arr);
         // var_dump($this->dictionary->updateExistingSlang('doughnut', 'snack', 'doughnut factory snack doughnut'));
