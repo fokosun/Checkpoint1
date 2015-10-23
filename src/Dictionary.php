@@ -31,20 +31,35 @@ class Dictionary {
             return $this->data;
 
         } else {
-            throw new WordExistsException( $slang . ' already exists in the dictionary' );
+            throw new WordExistsException($slang . ' already exists in the dictionary');
         }
     }
 
-
     public function deleteSlangFromDictionary($slang) {
+        $wordexist = true;
 
-        if(! array_key_exists($slang, $this->data)) {
-            throw new WordNotFoundException($slang . ' not found in the dictionary');
-        } else {
-            unset($this->data[$slang]);
+        // if(! array_key_exists($slang, $this->data)) {
+        //     throw new WordNotFoundException($slang . ' not found in the dictionary');
+        // } else {
+        //     // unset($this->data[$slang]);
 
-            return true;
-        }
+                $dataset = $this->data;
+                $wordexists = false;
+                for ($i=0; $i < count($dataset); $i++) {
+                    if($dataset[$i]["slang"] = $slang) {
+                        array_splice($dataset, $i, 1);
+                        $wordexists = true;
+                    }
+                }
+
+                if(!$wordexists) {
+                    throw new WordNotFoundException($slang . ' not found in the dictionary');
+                }
+
+
+
+        //     return true;
+        // }
     }
 
 
@@ -59,7 +74,7 @@ class Dictionary {
                 'sample-sentence' => $sentence
             ];
 
-            array_push($this->data, $this->data->findAndRetrieveSlang($slang) = $update);
+            array_push($this->data, $this->data = $update);
 
             return $this->data;
         }

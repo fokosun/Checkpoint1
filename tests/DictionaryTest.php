@@ -31,7 +31,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     *#expectedException WordNotFoundException
     */
 
     public function testDeleteSlangFromDictionary() {
