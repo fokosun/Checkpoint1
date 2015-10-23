@@ -10,13 +10,13 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     protected $dictionary;
 
     protected function setUp() {
-        $this->dictionary = new Dictionary(Data::$data);
+        $this->dictionary = new Dictionary;
     }
 
     public function testAddSlangToDictionary() {
         $arr = [
             "slang" => "gala",
-            "description" => 'snack',
+            "description" => "snack",
             "sample-sentence" => "I bought gala for free today!"
         ];
 
