@@ -14,16 +14,15 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testAddSlangToDictionary() {
-        $arr = [
+        $expected = [
             "slang" => "gala",
             "description" => "snack",
             "sample-sentence" => "I bought gala for free today!"
         ];
 
-        $this->assertEquals($arr, end($this->dictionary->addSlangToDictionary('gala',
-            'snack',
-            'I bought gala for free today!'
-        )));
+        $actual = (end($this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!')));
+
+        $this->assertEquals($expected, $actual);
 
         // var_dump($this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!'));
     }
