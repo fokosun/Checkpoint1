@@ -73,7 +73,7 @@ foreach(Data::$data as $row => $innerArray)
 
     $res = $innerArray['Sample-sentence'];
 
-    $getRank = $ranker->rankWords($res);
+    $getRank = $ranker->rankAndSort($res);
 
     $output = '';
 
