@@ -38,7 +38,9 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
 
-        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('gala'));
+        $slang = ['slang' => 'gala'];
+
+        $this->assertEquals($slang, $this->dictionary->deleteSlangFromDictionary('gala'));
 
     }
 
@@ -47,6 +49,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     */
 
     public function testUpdateExistingSlang() {
+
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
         $arr = [
             "slang" => "gala",

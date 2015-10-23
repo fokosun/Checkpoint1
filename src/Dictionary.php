@@ -37,13 +37,13 @@ class Dictionary {
     public function deleteSlangFromDictionary($slang) {
 
         $dataset = $this->data;
-        $wordexists = true;
+        $wordexists = false;
 
         for ($i=0; $i < count($dataset); $i++) {
             if($dataset[$i]["slang"] = $slang) {
-                array_splice($dataset, $i, 1);
-                $wordexists = true;
-                return $wordexists;
+                $b = array_slice($dataset[$i], -1, 1);
+
+                return $b;
             }
         }
 
