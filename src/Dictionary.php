@@ -41,6 +41,7 @@ class Dictionary {
 
         for ($i=0; $i < count($dataset); $i++) {
             if($dataset[$i]["slang"] = $slang) {
+                // $a = array_splice($dataset, $i, 1);
                 $b = array_slice($dataset[$i], -1, 1);
 
                 return $b;
