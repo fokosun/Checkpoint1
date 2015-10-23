@@ -48,34 +48,30 @@ class Dictionary {
             }
         }
 
-        if(!$wordexists) {
+        if(! $wordexists) {
             throw new WordNotFoundException($slang . ' not found in the dictionary');
         }
     }
 
     public function updateExistingSlang($slang, $meaning, $sentence) {
-            $update= [
+        $update= [
                 'slang' => $slang,
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
-
             array_push($this->data, $update);
 
-
-
             return end($this->data);
-
     }
 
     public function findAndRetrieveSlang($slang) {
+        $dataset = $this->data;
 
-        if (array_key_exists($slang, $this->data)) {
-            return $this->data[$slang];
-        } else {
-            throw new WordNotFoundException($slang . ' not found in the dictionary');
+        for ($i=0; $i < count($dataset) ; $i++) {
+            $key = is_array($dataset[$i]) ? true : $slang;
         }
 
+        return $key;
     }
 
     public function rankAndSort($sentence) {

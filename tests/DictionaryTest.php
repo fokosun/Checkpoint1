@@ -35,13 +35,9 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     */
 
     public function testDeleteSlangFromDictionary() {
-
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
-
         $slang = ['slang' => 'gala'];
-
         $this->assertEquals($slang, $this->dictionary->deleteSlangFromDictionary('gala'));
-
     }
 
     /**
@@ -49,7 +45,6 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     */
 
     public function testUpdateExistingSlang() {
-
         $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
         $arr = [
             "slang" => "chop",
@@ -57,21 +52,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
             "sample-sentence" => "get those chops and chop them off"
         ];
         $this->assertEquals($arr, $this->dictionary->updateExistingSlang('chop', 'to eat or pieces', 'get those chops and chop them off'));
-        // var_dump($arr);
-        // var_dump($this->dictionary->updateExistingSlang('doughnut', 'snack', 'doughnut factory snack doughnut'));
-
     }
 
 
     public function testFindAndRetrieveSlang() {
-        $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
-        $arr = [
-            "slang" => "gala",
-            "description" => "snack",
-            "sample-sentence" => "gala as food at the gala night"
-        ];
-
-        $this->assertEquals($arr, $this->dictionary->findAndRetrieveSlang('gala'));
+        $this->assertEquals(true, $this->dictionary->findAndRetrieveSlang('gala'));
     }
 
 
