@@ -54,20 +54,18 @@ class Dictionary {
     }
 
     public function updateExistingSlang($slang, $meaning, $sentence) {
-
-        if(! array_key_exists($slang, $this->data)) {
-            throw new WordNotFoundException($slang . ' not found in the dictionary');
-        } else {
             $update= [
                 'slang' => $slang,
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
 
-            array_push($this->data, $this->data = $update);
+            array_push($this->data, $update);
 
-            return $this->data;
-        }
+
+
+            return end($this->data);
+
     }
 
     public function findAndRetrieveSlang($slang) {

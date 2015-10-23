@@ -50,14 +50,16 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdateExistingSlang() {
 
-        $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
+        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
         $arr = [
-            "slang" => "gala",
-            "description" => 'nano',
-            "sample-sentence" => "nano gala night lights for sale"
+            "slang" => "chop",
+            "description" => 'to eat or pieces',
+            "sample-sentence" => "get those chops and chop them off"
         ];
 
-        $this->assertEquals($arr, $this->dictionary->updateExistingSlang('gala', 'nano', 'nano gala night lights for sale'));
+        $this->assertEquals($arr, $this->dictionary->updateExistingSlang('chop', 'to eat or pieces', 'get those chops and chop them off'));
+        // var_dump($arr);
+        // var_dump($this->dictionary->updateExistingSlang('doughnut', 'snack', 'doughnut factory snack doughnut'));
 
     }
 
