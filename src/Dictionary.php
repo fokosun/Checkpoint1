@@ -18,7 +18,6 @@ class Dictionary {
     }
 
     public function addSlangToDictionary($slang, $meaning, $sentence) {
-
         if(! array_key_exists($slang, $this->data)) {
             $arr= [
                 'slang' => $slang,
@@ -36,32 +35,22 @@ class Dictionary {
     }
 
     public function deleteSlangFromDictionary($slang) {
-        $wordexist = true;
 
-        // if(! array_key_exists($slang, $this->data)) {
-        //     throw new WordNotFoundException($slang . ' not found in the dictionary');
-        // } else {
-        //     // unset($this->data[$slang]);
+        $dataset = $this->data;
+        $wordexists = true;
 
-                $dataset = $this->data;
-                $wordexists = false;
-                for ($i=0; $i < count($dataset); $i++) {
-                    if($dataset[$i]["slang"] = $slang) {
-                        array_splice($dataset, $i, 1);
-                        $wordexists = true;
-                    }
-                }
+        for ($i=0; $i < count($dataset); $i++) {
+            if($dataset[$i]["slang"] = $slang) {
+                array_splice($dataset, $i, 1);
+                $wordexists = true;
+                return $wordexists;
+            }
+        }
 
-                if(!$wordexists) {
-                    throw new WordNotFoundException($slang . ' not found in the dictionary');
-                }
-
-
-
-        //     return true;
-        // }
+        if(!$wordexists) {
+            throw new WordNotFoundException($slang . ' not found in the dictionary');
+        }
     }
-
 
     public function updateExistingSlang($slang, $meaning, $sentence) {
 
