@@ -2,8 +2,8 @@
 
 namespace Florence;
 
-use Florence\WordExistsException;
-use Florence\WordNotFoundException;
+use Florence\Exceptions\WordExistsException;
+use Florence\Exceptions\WordNotFoundException;
 
 class Dictionary {
 
@@ -61,14 +61,14 @@ class Dictionary {
     }
 
     public function findAndRetrieveSlang($slang) {
+        $result = $this->data[$slang];
 
+        if(is_null($result)) {
 
-        $res = $this->data[$slang];
-        if(is_null($res)) {
             throw new WordNotFoundException($slang . ' not found in the dictionary');
         }
 
-        return $res;
+        return $result;
     }
 
     public function rankAndSort($sentence) {
