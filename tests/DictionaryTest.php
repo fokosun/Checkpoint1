@@ -1,7 +1,9 @@
 <?php
 
-namespace Florence;
+namespace Florence\Test;
 
+use Florence\Data;
+use Florence\Dictionary;
 use Florence\Exceptions\WordExistsException;
 use Florence\Exceptions\WordNotFoundException;
 
@@ -29,7 +31,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     public function testDeleteSlangFromDictionary() {
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
 
-        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('gala'));
+        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('galar'));
         $this->assertNotContains('gala', $this->dictionary->getData());
     }
 
