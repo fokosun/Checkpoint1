@@ -3,7 +3,7 @@
 namespace Florence;
 
 use Florence\Exceptions\WordExistsException;
-use Florence\Exception\WordNotFoundException;
+use Florence\Exceptions\WordNotFoundException;
 
 class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,9 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         $this->dictionary = new Dictionary;
     }
 
-
+    /**
+    *@expectedException WordExistsException
+    */
     public function testAddSlangToDictionary() {
         // fetches the temporary variable created in memory and stores in $fetched
         $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
@@ -22,7 +24,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    *@expectedException WordNotFoundtException
+    *@expectedException WordNotFoundException
     */
     public function testDeleteSlangFromDictionary() {
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
