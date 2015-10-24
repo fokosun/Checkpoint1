@@ -33,7 +33,6 @@ class Dictionary {
                 'description' => $meaning,
                 'sample-sentence' => $sentence
             ];
-
             $this->data[$slang] = $arr;
 
             return $this->data;
