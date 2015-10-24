@@ -13,10 +13,10 @@ The main dictionary, a static associative array that contains urban words
 - Dictionary: 
 CRUD implementations and Ranking System Implementation.
 
-- WordExistsException
+- WordExistsException:
 Returns the associated exception message
 
-- WordNotFoundException
+- WordNotFoundException:
 Returns the associated exception message
 
 ## Testing
