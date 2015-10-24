@@ -20,7 +20,7 @@ Returns the associated exception message
 Returns the associated exception message
 
 ## Testing
- Phpunit 5.0 was used for testing the classes.
+ Phpunit 5.0 was used for testing the classes. Find the test file [here](https://github.com/andela-fokosun/Checkpoint1/blob/master/tests/DictionaryTest.php)
 
 ## Installation
 
