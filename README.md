@@ -13,6 +13,12 @@ The main dictionary, a static associative array that contains urban words
 - Dictionary: 
 CRUD implementations and Ranking System Implementation.
 
+- WordExistsException
+Returns the associated exception message
+
+- WordNotFoundException
+Returns the associated exception message
+
 ## Testing
  Phpunit 5.0 was used for testing the classes.
 
