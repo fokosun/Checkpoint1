@@ -40,6 +40,7 @@ class Dictionary {
 
             return true;
         }
+
         throw new WordNotFoundException($slang . ' not found in the dictionary');
     }
 
@@ -53,7 +54,9 @@ class Dictionary {
             $this->data[$slang] = $arr;
 
             return true;
+
         }
+
         throw new WordNotFoundException($slang . ' not found in the dictionary');
     }
 
