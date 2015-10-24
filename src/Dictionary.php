@@ -1,11 +1,20 @@
 <?php
 
+/**
+* @author Florence Okosun <florence.okosun@andela.com>
+* @copyright 2015 Andela
+*/
+
 namespace Florence;
 
 use Florence\Exceptions\WordExistsException;
 use Florence\Exceptions\WordNotFoundException;
 
 class Dictionary {
+
+    /**
+    *@var $data
+    */
 
     private $data;
 
@@ -17,6 +26,11 @@ class Dictionary {
         return $this->data;
     }
 
+    /**
+    * @var boolean $arrayKeyExist
+    * @param string $slang
+    */
+
     public function arrayKeyExist($slang) {
         $arrayKeyExist = false;
 
@@ -26,6 +40,13 @@ class Dictionary {
 
         return $arrayKeyExist;
     }
+
+    /**
+    * @param string $slang
+    * @param string $meaning
+    * @param string $sentence
+    * @var array $arr
+    */
 
     public function addSlangToDictionary($slang, $meaning, $sentence) {
         if (! $this->arrayKeyExist($slang)) {
@@ -42,6 +63,10 @@ class Dictionary {
         }
     }
 
+    /**
+    * @param string $slang
+    */
+
     public function deleteSlangFromDictionary($slang) {
 
         if ($this->arrayKeyExist($slang)) {
@@ -53,6 +78,12 @@ class Dictionary {
         throw new WordNotFoundException($slang.' not found in the dictionary');
     }
 
+    /**
+    * @param string $slang
+    * @param string $meaning
+    * @param string $sentence
+    */
+
     public function updateExistingSlang($slang, $meaning, $sentence) {
         if ($this->arrayKeyExist($slang)) {
             $arr= [
@@ -63,11 +94,14 @@ class Dictionary {
             $this->data[$slang] = $arr;
 
             return true;
-
         }
 
         throw new WordNotFoundException($slang.' not found in the dictionary');
     }
+
+    /**
+    * @param string $slang
+    */
 
     public function findAndRetrieveSlang($slang) {
         $result = $this->data[$slang];
@@ -79,6 +113,11 @@ class Dictionary {
 
         return $result;
     }
+
+    /**
+    * @param string $sentence
+    * @var array $ranker
+    */
 
     public function rankAndSort($sentence) {
         $ranker = [];
