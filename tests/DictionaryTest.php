@@ -15,9 +15,6 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
         $this->dictionary = new Dictionary;
     }
 
-    /**
-    *@expectedException WordExistsException
-    */
     public function testAddSlangToDictionary() {
         // fetches the temporary variable created in memory and stores in $fetched
         $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
@@ -26,30 +23,38 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    *@expectedException WordNotFoundException
+    *@expectedException Florence\Exceptions\WordNotFoundException
     */
-    public function testDeleteSlangFromDictionary() {
+    public function testWordNotFoundExceptionForDeleteSlang() {
         $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
 
         $this->assertTrue($this->dictionary->deleteSlangFromDictionary('galar'));
-        $this->assertNotContains('gala', $this->dictionary->getData());
+    }
+
+    public function testDeleteSlangFromDictionary() {
+        $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
+
+        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('gala'));
     }
 
     /**
-    *@expectedException WordNotFoundException
+    *@expectedException Florence\Exceptions\WordNotFoundException
     */
+    public function testWordNotFoundExceptionForUpdateExistingSlang() {
+        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
+
+        $this->assertTrue($this->dictionary->updateExistingSlang('chopr', 'chinese cutlery', 'chop sticks for chop'));
+    }
+
     public function testUpdateExistingSlang() {
         $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
-        $result = $this->dictionary->updateExistingSlang('chop', 'chinese cutlery', 'chop sticks for chop s');
+        $result = $this->dictionary->updateExistingSlang('chop', 'chinese cutlery', 'chop sticks for chop');
 
         $this->assertTrue($result);
         $this->assertNotEquals('to eat or pieces', $this->dictionary->getData()['chop']['description']);
         $this->assertEquals('chinese cutlery', $this->dictionary->getData()['chop']['description']);
     }
 
-    /**
-    *@expectedException WordNotFoundException
-    */
     public function testFindAndRetrieveSlang() {
         $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
         $result = $this->dictionary->findAndRetrieveSlang('chop');
