@@ -17,8 +17,18 @@ class Dictionary {
         return $this->data;
     }
 
+    public function arrayKeyExist($slang) {
+        $arrayKeyExist = false;
+
+        if(array_key_exists($slang, $this->data)) {
+            $arrayKeyExist = true;
+        }
+
+        return $arrayKeyExist;
+    }
+
     public function addSlangToDictionary($slang, $meaning, $sentence) {
-        if(! array_key_exists($slang, $this->data)) {
+        if(! $this->arrayKeyExist($slang)) {
             $arr= [
                 'description' => $meaning,
                 'sample-sentence' => $sentence
@@ -35,7 +45,7 @@ class Dictionary {
 
     public function deleteSlangFromDictionary($slang) {
 
-        if(array_key_exists($slang, $this->data)) {
+        if($this->arrayKeyExist($slang)) {
             unset($this->data[$slang]);
 
             return true;
@@ -45,7 +55,7 @@ class Dictionary {
     }
 
     public function updateExistingSlang($slang, $meaning, $sentence) {
-        if(array_key_exists($slang, $this->data)) {
+        if($this->arrayKeyExist($slang)) {
             $arr= [
                 'description' => $meaning,
                 'sample-sentence' => $sentence
