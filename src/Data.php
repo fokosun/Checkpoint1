@@ -1,32 +1,39 @@
 <?php
 
 /**
-* @author Florence Okosun <florence.okosun@andela.com>
-* @copyright 2015 Andela
+ * @author Florence Okosun <florence.okosun@andela.com>
+ * @copyright 2015 Andela
 */
 
 namespace Florence;
 
+/**
+ * Class Data
+ *
+ * @package  Florence
+ */
 class Data
 {
     /**
-    * @var array $data
+     * Array of slangs or keywords
+     *
+     * @var array $data
     */
 
     public static $data = [
         "Tight" => [
             "description"     => "When someone performs an awesome task",
-            "sample-sentence" => "Prosper, you have finished the curriculum, Yes? Tight, Tight, Tight"
+            "sample-sentence" => "You have finished the curriculum, Yes? Tight"
             ],
 
         "Crash" => [
             "description"     => "To sleep in an unusual location.",
-            "sample-sentence" => "It's been a while since I crashed at a friend's, Can I crash at your place?"
+            "sample-sentence" => "Can I crash at your place?"
             ],
 
         "Lift" => [
             "description"     => "To steal an item",
-            "sample-sentence" => "Seyi still can't believe Amitab could lift her phone."
+            "sample-sentence" => "Amitab took a lift."
         ]
     ];
 }
