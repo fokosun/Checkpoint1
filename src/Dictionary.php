@@ -31,30 +31,6 @@ class Dictionary
     }
 
     /**
-     * Get data property
-     *
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->_data;
-    }
-
-    /**
-     * Set Data variable
-     *
-     * @param mixed $data data
-     *
-     * @return Dictionary
-     */
-    public function setData($data)
-    {
-        $this->_data = $data;
-
-        return $this;
-    }
-
-    /**
      * Find Slang in dictionary
      *
      * @param string $slang keyword
@@ -64,12 +40,12 @@ class Dictionary
     public function find(string $slang)
     {
         try {
-            if (! isset($this->_data[$slang])) {
+            if (! array_key_exists($slang, $this->_data)) {
                 throw new WordNotFoundException(
-                    $slang.' not found in the dictionary'
+                    $slang.', word not found in the dictionary'
                 );
             } else {
-                $result = $this->_data[$slang];
+                $result = $this->_data;
             }
         } catch (Throwable $e) {
             $result = $e->getMessage();
@@ -79,53 +55,44 @@ class Dictionary
     }
 
     /**
-     * Check if array key exists
-     *
-     * @param string $slang slang
-     *
-     * @var boolean $arrayKeyExist
-     *
-     * @return bool
-    */
-    public function arrayKeyExist($slang)
-    {
-        $arrayKeyExist = false;
-
-        if (array_key_exists($slang, $this->_data)) {
-            $arrayKeyExist = true;
-        }
-
-        return $arrayKeyExist;
-    }
-
-    /**
      * Add slang to dictionary
      *
      * @param string $slang    slang
      * @param string $meaning  meaning
      * @param string $sentence sample sentence
      *
-     * @throws   WordExistsException
-     * @internal param array $arr
-     *
      * @return mixed
      */
-    public function addSlangToDictionary($slang, $meaning, $sentence)
+    public function add(string $slang, string $meaning, string $sentence) : array
     {
-        if (! $this->arrayKeyExist($slang)) {
-            $arr= [
-                'description' => $meaning,
-                'sample-sentence' => $sentence
+        try {
+            if (array_key_exists($slang, $this->_data)) {
+                throw new WordExistsException(
+                    $slang.', word already exists in the dictionary.'
+                );
+            } else {
+                $contents = [
+                    'description' => $meaning,
+                    'sample-sentence' => $sentence
+                ];
+
+                $this->_data[$slang] = $contents;
+
+                $inserted = [
+                    'inserted' => true,
+                    'message' => 'Success',
+                    'data' => $this->_data
+                ];
+            }
+        } catch (Throwable $e) {
+            $inserted = [
+                'inserted' => false,
+                'message' => $e->getMessage(),
+                'data' => $this->_data
             ];
-            $this->_data[$slang] = $arr;
-
-            return $this->_data;
-
-        } else {
-            throw new WordExistsException(
-                $slang.' already exists in the dictionary'
-            );
         }
+
+        return $inserted;
     }
 
     /**
@@ -137,15 +104,31 @@ class Dictionary
      *
      * @return mixed
      */
-    public function deleteSlangFromDictionary($slang)
+    public function delete(string $slang) : array
     {
-        if ($this->arrayKeyExist($slang)) {
-            unset($this->_data[$slang]);
+        try {
+            if (! array_key_exists($slang, $this->_data)) {
+                throw new WordNotFoundException(
+                    $slang.', word not found in the dictionary'
+                );
+            } else {
+                unset($this->_data[$slang]);
 
-            return true;
+                $deleted = [
+                    'deleted' => true,
+                    'message' => 'Success',
+                    'data' => $this->_data
+                ];
+            }
+        } catch (Throwable $e) {
+            $deleted = [
+                'deleted' => false,
+                'message' => $e->getMessage(),
+                'data' => $this->_data
+            ];
         }
 
-        throw new WordNotFoundException($slang.' not found in the dictionary');
+        return $deleted;
     }
 
     /**
@@ -159,20 +142,36 @@ class Dictionary
      *
      * @return mixed
      */
-    public function updateExistingSlang($slang, $meaning, $sentence)
+    public function update(string $slang, string $meaning, string $sentence)
     {
-        if ($this->arrayKeyExist($slang)) {
-            $arr= [
-                'description' => $meaning,
-                'sample-sentence' => $sentence
+        try {
+            if (! array_key_exists($slang, $this->_data)) {
+                throw new WordNotFoundException(
+                    $slang.', word not found in the dictionary'
+                );
+            } else {
+                $arr = [
+                    'description' => $meaning,
+                    'sample-sentence' => $sentence
+                ];
+
+                $this->_data[$slang] = $arr;
+
+                $updated = [
+                    'updated' => true,
+                    'message' => 'Success',
+                    'data' => $this->_data
+                ];
+            }
+        } catch (Throwable $e) {
+            $updated = [
+                'updated' => false,
+                'message' => $e->getMessage(),
+                'data' => $this->_data
             ];
-
-            $this->_data[$slang] = $arr;
-
-            return true;
         }
 
-        throw new WordNotFoundException($slang.' not found in the dictionary');
+        return $updated;
     }
 
     /**
@@ -186,10 +185,8 @@ class Dictionary
      */
     public function rankAndSort($sentence)
     {
-        $ranker = [];
         $ranker = array_count_values(str_word_count(strtolower($sentence), 1));
         arsort($ranker);
-
         return $ranker;
     }
 }

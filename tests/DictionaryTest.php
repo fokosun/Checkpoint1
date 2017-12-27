@@ -2,72 +2,165 @@
 
 namespace Florence\Test;
 
-use Florence\Data;
 use Florence\Dictionary;
-use Florence\Exceptions\WordExistsException;
-use Florence\Exceptions\WordNotFoundException;
 
+/**
+ * Class DictionaryTest
+ *
+ * @package Florence\Test
+ */
 class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
-    protected $dictionary;
+    /**
+     * Test that a slang can be added to the dictionary
+     *
+     * @return void
+     */
+    public function testAddSlangToDictionary()
+    {
+        $dict = new Dictionary();
 
-    protected function setUp() {
-        $this->dictionary = new Dictionary;
-    }
-
-    public function testAddSlangToDictionary() {
         // fetches the temporary variable created in memory and stores in $fetched
-        $fetched = $this->dictionary->addSlangToDictionary('gala','snack','I bought gala for free today!');
 
-        $this->assertArrayHasKey('gala', $fetched);
+        $data = $dict->add(
+            'Buzzinga',
+            'An exclamation of astonishment, originally used in "The X-Files"',
+            'Yeah, Miley Cyrus is totally classy.... Buzzinga.'
+        );
+
+        $this->assertArrayHasKey('Buzzinga', $data['data']);
+        $this->assertTrue($data['inserted']);
+        $this->assertEquals('Success', $data['message']);
     }
 
     /**
-    *@expectedException Florence\Exceptions\WordNotFoundException
+     * Test that a slang that does not exist cannot be deleted
+     *
+     * @return void
     */
-    public function testWordNotFoundExceptionForDeleteSlang() {
-        $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
+    public function testThatWordNotFoundCannotBeDeleted()
+    {
+        $dict = new Dictionary();
 
-        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('galar'));
-    }
+        $data = $dict->add(
+            'Bezzinga',
+            'An exclamation of astonishment, originally used in "The X-Files"',
+            'Yeah, Miley Cyrus is totally classy.... Buzzinga.'
+        );
 
-    public function testDeleteSlangFromDictionary() {
-        $this->dictionary->addSlangToDictionary('gala', 'snack', 'gala as food at the gala night');
-
-        $this->assertTrue($this->dictionary->deleteSlangFromDictionary('gala'));
+        $this->assertFalse($dict->delete('Buzzinga')['deleted']);
+        $this->assertEquals('Success', $data['message']);
     }
 
     /**
-    *@expectedException Florence\Exceptions\WordNotFoundException
+     * Test that a slang that exists can be deleted from the dictionary
+     *
+     * @return void
+     */
+    public function testThatWordFoundCanBeDeleted()
+    {
+        $dict = new Dictionary();
+
+        $this->assertTrue($dict->delete('Tight')['deleted']);
+    }
+
+    /**
+     * Test that a slang that does not exist cannot be updated
+     *
+     * @return void
     */
-    public function testWordNotFoundExceptionForUpdateExistingSlang() {
-        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
+    public function testThatWordNotFoundCannotBeUpdated()
+    {
+        $dict = new Dictionary();
 
-        $this->assertTrue($this->dictionary->updateExistingSlang('chopr', 'chinese cutlery', 'chop sticks for chop'));
+        $dict->add(
+            'chop', 'to eat or pieces', 'get those chops and chop them off'
+        );
+
+        $this->assertFalse(
+            $dict->update(
+                'chopsticks', 'chinese cutlery', 'chop sticks for chop'
+            )['updated']
+        );
     }
 
-    public function testUpdateExistingSlang() {
-        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
-        $result = $this->dictionary->updateExistingSlang('chop', 'chinese cutlery', 'chop sticks for chop');
+    /**
+     * Test that existing slang can be updated
+     *
+     * @return void
+     */
+    public function testThatExistingSlangCanBeUpdated()
+    {
+        $dict = new Dictionary();
 
-        $this->assertTrue($result);
-        $this->assertNotEquals('to eat or pieces', $this->dictionary->getData()['chop']['description']);
-        $this->assertEquals('chinese cutlery', $this->dictionary->getData()['chop']['description']);
+        $dict->add(
+            'chop', 'to eat or pieces', 'get those chops and chop them off'
+        );
+
+        $this->assertTrue(
+            $dict->update(
+                'chop', 'chinese cutlery', 'chop sticks for chop'
+            )['updated']
+        );
     }
 
-    public function testFindAndRetrieveSlang() {
-        $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
-        $result = $this->dictionary->find('chop');
+    /**
+     * Test that slang added can be found
+     *
+     * @return void
+     */
+    public function testSlangAddedCanBeFound()
+    {
+        $dict = new Dictionary();
 
-        $this->assertNotEmpty($result);
-        $this->assertEquals('to eat or pieces', $result['description']);
+        $dict->add('chop', 'to eat or pieces', 'get those chops and chop them off');
+
+        $result = $dict->find('chop');
+
+        $this->assertArrayHasKey('chop', $result);
     }
 
-    public function testRankAndSort() {
-        $sentence = 'Andrei: Prosper prosper prosper, are you done with the curriculum yet? Prosper: yes Andrei: Oh tight tight tight!';
-        $ranker = ["prosper" => "4", "tight" => "3", "andrei" => "2", "yet" => "1", "oh" => "1", "curriculum" => "1", "yes" => "1", "with" => "1", "are" => "1", "you" => "1", "done" => "1", "the" => "1"];
+    /**
+     * Test that slang not added cannot be found
+     *
+     * @return void
+     */
+    public function testSlangNotAddedCannotBeFound()
+    {
+        $dict = new Dictionary();
 
-        $this->assertEquals($ranker, $this->dictionary->rankAndSort($sentence));
+        $result = $dict->find('buzzinger');
+
+        $this->assertEquals('buzzinger, word not found in the dictionary', $result);
     }
 
+    /**
+     * Rank and sort sentence
+     *
+     * @return void
+     */
+    public function testRankAndSort()
+    {
+        $dict = new Dictionary();
+
+        $sentence = 'Andrei: Prosper prosper prosper, are you done with
+        the curriculum yet? Prosper: yes Andrei: Oh tight tight tight!';
+
+        $ranker = [
+            "prosper" => "4",
+            "tight" => "3",
+            "andrei" => "2",
+            "yet" => "1",
+            "oh" => "1",
+            "curriculum" => "1",
+            "yes" => "1",
+            "with" => "1",
+            "are" => "1",
+            "you" => "1",
+            "done" => "1",
+            "the" => "1"
+        ];
+
+        $this->assertEquals($ranker, $dict->rankAndSort($sentence));
+    }
 }
