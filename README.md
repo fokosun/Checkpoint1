@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/fokosun/Checkpoint1.svg?branch=master)](https://travis-ci.org/fokosun/Checkpoint1)
 
-[![Coverage Status](https://coveralls.io/repos/github/fokosun/Checkpoint1/badge.svg?branch=master)](https://coveralls.io/github/fokosun/Checkpoint1?branch=master)
-
 # Checkpoint One
 This package was built mainly for academic purposes. It can be 
 described ad an agnostic package that conforms with thephpleague.com 
