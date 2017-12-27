@@ -57,7 +57,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
     public function testFindAndRetrieveSlang() {
         $this->dictionary->addSlangToDictionary('chop', 'to eat or pieces', 'get those chops and chop them off');
-        $result = $this->dictionary->findAndRetrieveSlang('chop');
+        $result = $this->dictionary->find('chop');
 
         $this->assertNotEmpty($result);
         $this->assertEquals('to eat or pieces', $result['description']);

@@ -7,3 +7,5 @@ _build/
 phpunit.xml
 composer.phar
 .idea/*
+
+usage.php

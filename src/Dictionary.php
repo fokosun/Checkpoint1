@@ -1,12 +1,10 @@
 <?php
 
-/**
-* @author Florence Okosun <florence.okosun@andela.com>
-* @copyright 2015 Andela
-*/
+declare (strict_types=1);
 
 namespace Florence;
 
+use Throwable;
 use Florence\Exceptions\WordExistsException;
 use Florence\Exceptions\WordNotFoundException;
 
@@ -17,13 +15,11 @@ use Florence\Exceptions\WordNotFoundException;
  */
 class Dictionary
 {
-
     /**
-     * Load the dictionary data
+     * Dictionary Data
      *
-     *@var $_data
+     * @var $_data
     */
-
     private $_data;
 
     /**
@@ -42,6 +38,44 @@ class Dictionary
     public function getData()
     {
         return $this->_data;
+    }
+
+    /**
+     * Set Data variable
+     *
+     * @param mixed $data data
+     *
+     * @return Dictionary
+     */
+    public function setData($data)
+    {
+        $this->_data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Find Slang in dictionary
+     *
+     * @param string $slang keyword
+     *
+     * @return mixed
+     */
+    public function find(string $slang)
+    {
+        try {
+            if (! isset($this->_data[$slang])) {
+                throw new WordNotFoundException(
+                    $slang.' not found in the dictionary'
+                );
+            } else {
+                $result = $this->_data[$slang];
+            }
+        } catch (Throwable $e) {
+            $result = $e->getMessage();
+        }
+
+        return $result;
     }
 
     /**
@@ -142,27 +176,6 @@ class Dictionary
     }
 
     /**
-     * Find Slang in dictionary
-     *
-     * @param string $slang slang
-     *
-     * @throws WordNotFoundException
-     *
-     * @return mixed
-     */
-    public function findAndRetrieveSlang($slang)
-    {
-        $result = $this->_data[$slang];
-
-        if (is_null($result)) {
-
-            throw new WordNotFoundException($slang.' not found in the dictionary');
-        }
-
-        return $result;
-    }
-
-    /**
      * Rank and Sort Dictionary
      *
      * @param string $sentence sample sentence
@@ -178,19 +191,5 @@ class Dictionary
         arsort($ranker);
 
         return $ranker;
-    }
-
-    /**
-     * Set Data variable
-     *
-     * @param mixed $data data
-     *
-     * @return Dictionary
-     */
-    public function setData($data)
-    {
-        $this->_data = $data;
-
-        return $this;
     }
 }

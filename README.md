@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org/fokosun/Checkpoint1.svg?branch=master)](https://travis-ci.org/fokosun/Checkpoint1)
 
-# Checkpoint One - Urban dictionary agnostic of common slangs & meanings
-
-An agnostic package that conforms with thephpleague.com specifications and uses the Test Driven Development process (PHPUnit)
+# Checkpoint One
+This package was built mainly for academic purposes. It can be 
+described ad an agnostic package that conforms with thephpleague.com 
+specifications and uses the Test Driven Development process (PHPUnit)
 
 ## Classes
 - Data: 
@@ -29,8 +30,6 @@ Require via composer like so:
 ```
 
 ## Usage
-
-### first things first:
 
 ```
     $dictionary = Data::$data;
