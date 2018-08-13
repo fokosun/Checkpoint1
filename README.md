@@ -18,9 +18,6 @@ Returns the associated exception message
 - WordNotFoundException:
 Returns the associated exception message
 
-## Testing
- Phpunit 5.0 was used for testing the classes. Find the test file [here](https://github.com/andela-fokosun/Checkpoint1/blob/master/tests/DictionaryTest.php)
-
 ## Installation
 
 Require via composer like so:
@@ -47,19 +44,23 @@ Require via composer like so:
 ### Retrieve Slang
 
 ```
-    $dictionary->addSlang($slang);
+    $dictionary->findOne($slang);
+    
+    $dictionary->findAll();
 ```
 
 ### Update Slang
 
 ```
-    $dictionary->addSlang($slang, $description, $sentence);
+    $dictionary->updateSlang($slang, $description, $sentence);
 ```
 
 ### Delete Slang
 
 ```
-    $dictionary->addSlang($slang);
+    $dictionary->deleteOne($slang);
+    
+    $dictionary->deleteAll();
 ```
 
 
@@ -99,12 +100,3 @@ Sample Output:
 [“Tight” => 3, “Prosper” => 2, “Yes” => 1, “Have” => 1, “you” => 1, “finished” => 1, “the” => 1, “curriculum?” => 1]
 
 ```
-
-
-
-## Contributing
-Please check out [CONTRIBUTING](CONTRIBUTING.md) file for detailed contribution guidelines.
-
-
-## License
-See the bundled [LICENSE](LICENSE.md) file for more details.
