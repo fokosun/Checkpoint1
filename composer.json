@@ -5,7 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "andela-fokosun",
+            "name": "fokosun",
             "email": "okosunuzflorence@gmail.com",
             "role": "Developer"
         }
@@ -13,7 +13,7 @@
 
     "require":
     {
-      "php": ">=5.6.4",
+      "php": "7.2.5",
       "phpunit/phpunit": "~5.0"
     },
 
