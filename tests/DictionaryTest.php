@@ -12,11 +12,10 @@ use Florence\Exceptions\WordNotFoundException;
  * @package Florence\Test
  */
 class DictionaryTest extends TestCase {
-    /**
-     * Test that a slang can be added to the dictionary
-     *
-     * @return void
-     */
+
+	/**
+	 * @test
+	 */
     public function testAddSlangToDictionary() {
         $dict = new Dictionary();
 
@@ -50,11 +49,9 @@ class DictionaryTest extends TestCase {
         $this->assertFalse($dict->deleteOne('Buzzinga')['deleted']);
     }
 
-    /**
-     * Test that a slang that exists can be deleted from the dictionary
-     *
-     * @return void
-     */
+	/**
+	 * @test
+	 */
     public function testThatWordFoundCanBeDeleted()
     {
         $dict = new Dictionary();
@@ -85,11 +82,9 @@ class DictionaryTest extends TestCase {
         );
     }
 
-    /**
-     * Test that existing slang can be updated
-     *
-     * @return void
-     */
+	/**
+	 * @test
+	 */
     public function testThatExistingSlangCanBeUpdated()
     {
         $dict = new Dictionary();
@@ -109,11 +104,9 @@ class DictionaryTest extends TestCase {
         $this->assertSame('chop sticks for chop', $updated['data']['sample-sentence']);
     }
 
-    /**
-     * Test that slang added can be found
-     *
-     * @return void
-     */
+	/**
+	 * @test
+	 */
     public function testSlangAddedCanBeFound()
     {
         $dict = new Dictionary();
@@ -144,11 +137,9 @@ class DictionaryTest extends TestCase {
         $dict->findOne('buzzinger');
     }
 
-    /**
-     * Rank and sort sentence
-     *
-     * @return void
-     */
+	/**
+	 * @test
+	 */
     public function testRankAndSort()
     {
         $dict = new Dictionary();
@@ -174,6 +165,9 @@ class DictionaryTest extends TestCase {
         $this->assertEquals($ranker, $dict->rankAndSort($sentence));
     }
 
+	/**
+	 * @test
+	 */
     public function testFindAll()
     {
         $dict = new Dictionary();
@@ -182,6 +176,9 @@ class DictionaryTest extends TestCase {
         $this->assertGreaterThanOrEqual(0, count($all));
     }
 
+	/**
+	 * @test
+	 */
     public function testDelteAll()
     {
         $dict = new Dictionary();
