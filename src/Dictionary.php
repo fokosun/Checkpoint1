@@ -5,12 +5,8 @@ namespace Florence;
 use Florence\Exceptions\WordExistsException;
 use Florence\Exceptions\WordNotFoundException;
 
-/**
- * Class Dictionary
- *
- * @package Florence
- */
 class Dictionary {
+
     /**
      * Dictionary Data
      *
@@ -19,7 +15,7 @@ class Dictionary {
     private $_data;
 
     /**
-     * Class constructor
+     * Load data into Dictionary instance
      */
     public function __construct()
     {
@@ -34,29 +30,24 @@ class Dictionary {
      *
      * @return array
      */
-    public function findOne($slang)
+    public function findOne($slang): array
     {
-        if (! array_key_exists($slang, $this->_data)) {
+        if (!array_key_exists($slang, $this->_data)) {
             throw new WordNotFoundException (
                 $slang.',: not found in the dictionary'
             );
-        } else {
-            $result = $this->_data;
         }
 
-        return $result;
+        return $this->_data;
     }
 
     /**
      * Return All Slangs
-     *
-     * @return array
      */
-    public function findAll()
+    public function findAll(): array
     {
         return $this->_data;
     }
-
 
     /**
      * Add a new slang
@@ -67,54 +58,46 @@ class Dictionary {
      *
      * @return array
      */
-    public function addSlang($slang = []) : array
+    public function addSlang($slang = []): array
     {
         if (array_key_exists($slang['title'], $this->_data)) {
             throw new WordExistsException(
                 $slang . ': word already exists in the dictionary.'
             );
-        } else {
-            $contents = [
-                'description'       => $slang['description'],
-                'sample-sentence'   => $slang['sentence']
-            ];
-
-            $this->_data[$slang['title']] = $contents;
-
-            $inserted = [
-                'data'      => $this->_data
-            ];
         }
 
-        return $inserted;
+		$contents = [
+			'description'       => $slang['description'],
+			'sample-sentence'   => $slang['sentence']
+		];
+
+		$this->_data[$slang['title']] = $contents;
+
+		return ['data' => $this->_data];
     }
 
-    /**
-     * Delete a slang
-     *
-     * @param $slang
-     *
-     * @throws WordNotFoundException
-     *
-     * #return array
-     */
+	/**
+	 * Delete a slang
+	 *
+	 * @param $slang
+	 *
+	 * @return array
+	 * @throws WordNotFoundException
+	 */
     public function deleteOne($slang) : array
     {
         if (! array_key_exists($slang, $this->_data)) {
             throw new WordNotFoundException(
                 $slang.', word not found in the dictionary'
             );
-        } else {
-            unset($this->_data[$slang]);
-
-            $deleted = [
-                'deleted' => true,
-                'message' => 'Success',
-                'data' => $this->_data
-            ];
         }
+		unset($this->_data[$slang]);
 
-        return $deleted;
+		return [
+			'deleted' => true,
+			'message' => 'Success',
+			'data' => $this->_data
+		];
     }
 
     /**
@@ -140,38 +123,34 @@ class Dictionary {
      *
      * @return array
      */
-    public function updateSlang($slang, $meaning, $sentence)
+    public function updateSlang($slang, $meaning, $sentence): array
     {
         if (! array_key_exists($slang, $this->_data)) {
             throw new WordNotFoundException(
                 $slang.', word not found in the dictionary'
             );
-        } else {
-            $arr = [
-                'description'       => $meaning,
-                'sample-sentence'   => $sentence
-            ];
-
-            $this->_data[$slang] = $arr;
-
-            $updated = [
-                'data' => $this->_data[$slang]
-            ];
         }
 
-        return $updated;
+		$arr = [
+			'description'       => $meaning,
+			'sample-sentence'   => $sentence
+		];
+
+		$this->_data[$slang] = $arr;
+
+		return [
+			'data' => $this->_data[$slang]
+		];
     }
 
-    /**
-     * Rank and Sort Dictionary
-     *
-     * @param string $sentence sample sentence
-     *
-     * @var array $ranker ranker
-     *
-     * @return array
-     */
-    public function rankAndSort($sentence)
+	/**
+	 * Rank and Sort Dictionary
+	 *
+	 * @param string $sentence sample sentence
+	 *
+	 * @return array
+	 */
+	public function rankAndSort($sentence): array
     {
         $ranker = array_count_values(str_word_count(strtolower($sentence), 1));
         arsort($ranker);
