@@ -3,13 +3,15 @@
 namespace Florence\Test;
 
 use Florence\Dictionary;
+use PHPUnit\Framework\TestCase;
+use Florence\Exceptions\WordNotFoundException;
 
 /**
  * Class DictionaryTest
  *
  * @package Florence\Test
  */
-class DictionaryTest extends \PHPUnit_Framework_TestCase {
+class DictionaryTest extends TestCase {
     /**
      * Test that a slang can be added to the dictionary
      *
@@ -30,10 +32,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException \Florence\Exceptions\WordNotFoundException
+     * @test
      */
     public function testThatWordNotFoundCannotBeDeleted()
     {
+    	$this->expectException(WordNotFoundException::class);
         $dict = new Dictionary();
 
         $slang = [
@@ -60,10 +63,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException \Florence\Exceptions\WordNotFoundException
+     * @test
      */
     public function testThatWordNotFoundCannotBeUpdated()
     {
+    	$this->expectException(WordNotFoundException::class);
         $dict = new Dictionary();
 
         $slang = [
@@ -130,10 +134,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException \Florence\Exceptions\WordNotFoundException
+     * @test
      */
     public function testSlangNotAddedCannotBeFound()
     {
+    	$this->expectException(WordNotFoundException::class);
         $dict = new Dictionary();
 
         $dict->findOne('buzzinger');

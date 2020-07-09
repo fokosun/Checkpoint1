@@ -1,37 +1,30 @@
 {
     "name": "florence/dictionary",
     "description": "An urban dictionary agnostic of common slangs and their meanings",
-    "type": "",
+    "type": "project",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "fokosun",
-            "email": "okosunuzflorence@gmail.com",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "fokosun",
+        "email": "okosunuzflorence@gmail.com",
+        "role": "Developer"
+    }],
 
-    "require":
-    {
-      "php": "7.2.5",
-      "phpunit/phpunit": "~5.0"
+    "require": {
+        "php": "^7.3",
+        "phpunit/phpunit": "^9.2"
     },
-
-     "autoload":
-     {
-        "psr-4":
-        {
-            "Florence\\" : "src/"
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Florence\\": "src/"
         },
 
         "classmap": ["src/"]
     },
 
-    "autoload-dev":
-    {
-        "psr-4":
-        {
-            "Florence\\Test\\" : "tests/"
+    "autoload-dev": {
+        "psr-4": {
+            "Florence\\Test\\": "tests/"
         }
     }
 }

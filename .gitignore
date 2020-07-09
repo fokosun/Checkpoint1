@@ -1,5 +1,6 @@
 # common
 
+index.php
 /vendor/
 _build/
 *.mo
